@@ -17,6 +17,7 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias g=git
 alias ga='git add'
+alias gdb='git push -d origin '
 alias gaa='git add --all'
 alias gb='git branch'
 alias gbD='git branch -D'
