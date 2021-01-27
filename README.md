@@ -1,0 +1,2 @@
+# lazyscript
+LAZYNESS DONT KILLS
