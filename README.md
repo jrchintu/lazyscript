@@ -6,7 +6,7 @@ LAZYNESS DONT KILLS
 
 otherwise
 
-`git clone https://github.com/jrchintu/rom_builders && cd rom_builders && chmod +x ccache.sh && ./ccache.sh`
+`git clone https://github.com/jrchintu/lazyscript && cd lazyscript && chmod +x ccache.sh && ./ccache.sh`
 
 # project status
 
