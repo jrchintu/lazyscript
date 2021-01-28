@@ -2,7 +2,7 @@
 LAZYNESS DONT KILLS
 
 # how to use scripts 
-`$ bash <(curl -s {link to script} )`
+`bash <(curl -s {link to script} )`
 
 otherwise
 
