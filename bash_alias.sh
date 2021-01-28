@@ -7,7 +7,7 @@ git config --global user.email "harrypetersun@outlook.com.com"
 export TZ='Asia/Kolkata'
 
 #alias
-alias gdup='gdrive upload -p 0APWUufHuHSMnUk9PVA'
+alias gdup='gdrive upload -p 0AB4ISlC3RuroUk9PVA '
 alias update='sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y'
 alias src='source ~/.bashrc'
 alias nb='nano ~/.bashrc'
