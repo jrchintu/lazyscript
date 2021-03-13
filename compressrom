@@ -1,0 +1,8 @@
+repo init -q --no-repo-verify --depth=1 -u git://github.com/AospExtended/manifest.git -b 11.x -g default,-device,-mips,-darwin,-notdefault
+git clone https://github.com/Apon77Lab/android_.repo_local_manifests.git --depth 1 -b aex .repo/local_manifests -q
+rm -rf .repo
+com () 
+{ 
+    tar --use-compress-program="pigz -k -$2 " -cf $1.tar.gz $1
+}
+time com aex 1
