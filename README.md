@@ -3,10 +3,6 @@
 ## How to use scripts 
 `bash <(curl -s {link to script} )`
 
-       OR
-
-`git clone https://github.com/jrchintu/lazyscript && cd lazyscript && chmod +x ccache.sh && ./ccache.sh`
-
 ## Project status
 
 Currently the project is in pre-alpha stage so will polish it until then dont use xd
