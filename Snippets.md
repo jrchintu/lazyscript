@@ -1,3 +1,14 @@
+# Snippets
+## *Azure temp setup*
+```
+rom_name='awaken' && \
+sudo mkdir -p /mnt/$rom_name && \
+sudo chmod -R 666 /mnt/$rom_name && \
+sudo chmod -R 777 /mnt/$rom_name/ && \
+cd /mnt/$rom_name/
+```
+
+## *Auto tmate*
 ```
 sudo apt update -y && \
 sudo apt install tmux tmate -y && \
