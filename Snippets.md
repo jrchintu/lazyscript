@@ -19,6 +19,11 @@ sudo chmod -R 777 /mnt/$rom_name/ && \
 cd /mnt/$rom_name/
 ```
 
+## *GDUPLOAD* (Gdrive Upload)
+```
+curl --compressed -Ls https://github.com/labbots/google-drive-upload/raw/master/install.sh | sh -s
+```
+
 ## *Auto tmate*
 ```
 sudo apt update -y && \
