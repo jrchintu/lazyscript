@@ -76,7 +76,7 @@ setup() {
     exit
   fi
   timestamp=$(date "+%s")
-  filename=./sessions-`date "+%F"`-${timestamp:6}.sh
+  filename=./sessions-$(date "+%F")-${timestamp:6}.sh
   sessions=$(tmux list-sessions -F "#{session_name}")
   echo "$sessions"
   touch "$filename"
