@@ -38,3 +38,13 @@ echo $SENDSHELL
 ```
 ccache_dir=/mnt/aosip/ccache && max_ccache=40G && export CCACHE_DIR=$ccache_dir && ccache -M $max_ccache && export USE_CCACHE=1 && export CCACHE_EXEC=$(which ccache)
 ```
+
+## *Shell-Bot*
+```
+sudo apt update -y
+sudo apt-get install -y nodejs
+curl -sL https://deb.nodesource.com/setup_current.x | sudo -E bash - && apt install --assume-yes nodejs
+curl https://www.npmjs.com/install.sh | sudo sh 
+sudo npm install -g forever
+bash <(curl -s {https://raw.githubusercontent.com/jrchintu/aex/debloat/Assets/autoshellbot.sh})
+```
