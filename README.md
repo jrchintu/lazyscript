@@ -1,22 +1,17 @@
-# lazyscript
-LAZYNESS DONT KILLS
+# Lazyscript
 
-# how to use scripts 
+## How to use scripts 
 `bash <(curl -s {link to script} )`
 
-otherwise
+       OR
 
 `git clone https://github.com/jrchintu/lazyscript && cd lazyscript && chmod +x ccache.sh && ./ccache.sh`
 
-# project status
+## Project status
 
-currently the project is in pre-alpha stage so will polish it until then dont use xd
+Currently the project is in pre-alpha stage so will polish it until then dont use xd
 
-# about the scripts
+## About the scripts
 starteer.sh = a script to start bot-shell in your linux server
 add_hal = script to add hals for redmi note 4
 envsetup.sh = a script for setting up temprory storage and ccache (will be added later) for azure virtual machine
-
-
-
-
