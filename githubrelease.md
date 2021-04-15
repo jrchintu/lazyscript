@@ -7,7 +7,7 @@ export TAGVER="0.1"
 export FILE="./*.zip"
 export MESSAGE="Your changelog here"
 ```
-- Later install golang and finally u can release
+- Install golang and Release
 ```
 sudo apt install golang -y
 go get github.com/github/hub
@@ -25,7 +25,7 @@ export TAGVER="0.1"
 export FILERENAME="rom.zip"
 export FILE="./*.zip"
 ```
-- Later install golang and finally u can release
+- Install golang and Release
 ```
 sudo apt install golang -y
 go get github.com/github-release/github-release
