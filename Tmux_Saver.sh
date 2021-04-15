@@ -20,12 +20,12 @@ construct_panes() {
 
   while [ $# -gt 2 ] ; do
     # get child process of pane
-    child=$(pgrep -P $1)
-    if [ -z $child ]
+    child=$(pgrep -P "$1")
+    if [ -z "$child" ]
     then
-      command=$(ps -o 'args=' -p $1)
+      command=$(ps -o 'args=' -p "$1")
     else
-      command=$(ps -o 'args=' -p $child)
+      command=$(ps -o 'args=' -p "$child")
     fi
 
     case "$command" in
@@ -41,21 +41,21 @@ construct_panes() {
     [ "$window_index" = "$last_window" ] && initial_pane=false
 
     if [ "$initial_window" == "true" ] && [ "$initial_pane" = "true" ]; then
-      echo "tmux new-session -d -n $window_name -s $session -c "$2""
+      echo "tmux new-session -d -n $window_name -s $session -c ""$2"""
       initial_session=false
     elif [ "$initial_window" == "true" ] || [ "$initial_pane" = "true" ]; then
-      echo "tmux new-window -n $window_name -t $session:$window_index -c "$2""
+      echo "tmux new-window -n $window_name -t $session:$window_index -c ""$2"""
     else
-      echo "tmux split-window -t $session:$window_index -c "$2""
+      echo "tmux split-window -t $session:$window_index -c ""$2"""
     fi
     # $3 - pane index
     echo "sleep 0.2"
-    [ "$command" ] && echo tmux send-keys -t $session:$window_index.$3 \"$command\" Enter
-    echo tmux select-layout -t $session:$window_index \"$layout\" \> /dev/null
+    [ "$command" ] && echo tmux send-keys -t "$session":"$window_index"."$3" \""$command"\" Enter
+    echo tmux select-layout -t "$session":"$window_index" \""$layout"\" \> /dev/null
     last_session=$session
     last_window=$window_index
     shift 3
-  done >> ./$filename
+  done >> ./"$filename"
 }
 
 construct_window() {
@@ -66,8 +66,8 @@ construct_window() {
   nr_of_panes=$4
   layout=$5
 
-  panes=$(tmux list-panes -t $1:$2 -F "#{pane_pid} #{pane_current_path} #{pane_index}")
-  construct_panes $session $window_index $nr_of_panes $name $layout $panes
+  panes=$(tmux list-panes -t "$1":"$2" -F "#{pane_pid} #{pane_current_path} #{pane_index}")
+  construct_panes "$session" "$window_index" "$nr_of_panes" "$name" "$layout" "$panes"
 }
 
 setup() {
@@ -78,21 +78,21 @@ setup() {
   timestamp=$(date "+%s")
   filename=./sessions-`date "+%F"`-${timestamp:6}.sh
   sessions=$(tmux list-sessions -F "#{session_name}")
-  echo $sessions
-  touch $filename
-  echo '#!/bin/bash' >> $filename
-  echo 'if $(tmux has-session 2>/dev/null); then tmux -2u att; exit; fi' >> $filename
+  echo "$sessions"
+  touch "$filename"
+  echo '#!/bin/bash' >> "$filename"
+  echo 'if $(tmux has-session 2>/dev/null); then tmux -2u att; exit; fi' >> "$filename"
 }
 
 teardown() {
-  echo 'tmux -2u att' >> $filename
-  chmod +x $filename
+  echo 'tmux -2u att' >> "$filename"
+  chmod +x "$filename"
 }
 
 save_sessions() {
   windows=$(tmux list-windows -a -F "#{session_name} #{window_index} #{window_name} #{window_panes} #{window_layout}")
   while read window; do
-    construct_window $window
+    construct_window "$window"
   done <<< "$windows"
 }
 
