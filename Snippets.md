@@ -28,7 +28,7 @@ curl --compressed -Ls https://github.com/labbots/google-drive-upload/raw/master/
 ```
 sudo apt update -y && \
 sudo apt install tmux tmate -y && \
-unset TMUX && ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa && \
+unset TMUX && ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y && \
 tmate -S /tmp/tmate.sock new-session -d && \
 tmate -S /tmp/tmate.sock wait tmate-ready && \
 SENDSHELL=$(tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}') && \
