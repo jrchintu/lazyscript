@@ -2,6 +2,7 @@
 
 git config --global user.name "jrchintu"
 git config --global user.email "harrypetersun@outlook.com.com"
+git config --global push.default matching
 export TZ='Asia/Kolkata'
 
 #alias
