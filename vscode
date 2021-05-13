@@ -1,0 +1,5 @@
+#install vscode for gcloud free shell
+curl -fsSL https://code-server.dev/install.sh | sh -s -- --method=standalone
+PATH="$HOME/.local/bin:$PATH"
+
+# uze " code-server --auth=none " to run it
