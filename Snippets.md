@@ -52,7 +52,7 @@ export CCACHE_DIR="/home/$USER/.ccache"
 ```
 ccache -o compression=true
 
-# ccheck {none; content; mtime}
+# set compilercheck {none; content; mtime} (OPTIONAL)
 export CCACHE_COMPILERCHECK="content"
 ```
 
