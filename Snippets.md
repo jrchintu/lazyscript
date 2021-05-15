@@ -39,15 +39,14 @@ echo $SENDSHELL
 ```
 ## Ccache
 ```
-{ 
-echo USE_CCACHE=1
-echo "export CCACHE_DIR=\"/mnt/aosip/ccache\""
-}>>~/.bashrc && source ~/.bashrc
+echo USE_CCACHE=1 >>~/.bashrc
+echo "export CCACHE_DIR=\"~/.ccache\"" >>~/.bashrc
+source ~/.bashrc
 
 ccache -M 30G
 export USE_CCACHE=1
 export CCACHE_EXEC=$(command -v ccache)
-export CCACHE_DIR="/mnt/aosip/ccache"
+export CCACHE_DIR="~/.ccache"
 ```
 ##### Compression & Compilercheck
 ```
@@ -65,4 +64,33 @@ curl -sL https://deb.nodesource.com/setup_current.x | sudo -E bash - && apt inst
 curl https://www.npmjs.com/install.sh | sudo sh 
 sudo npm install -g forever
 bash <(curl -s {https://raw.githubusercontent.com/jrchintu/aex/debloat/Assets/autoshellbot.sh})
+```
+
+## SWAP
+```
+# Check if swap is there
+sudo swapon --show
+free -h
+df -h
+
+# Make swapfile
+sudo fallocate -l 1G /swapfile
+
+# Check size
+ls -lh /swapfile
+
+# Set crrct perm and check it
+sudo chmod 600 /swapfile
+ls -lh /swapfile
+
+# Mark it as swap
+sudo mkswap /swapfile
+
+# Turn swap on and check
+sudo swapon /swapfile
+sudo swapon --show
+
+# Take fstab backup && make swap permanent
+sudo cp /etc/fstab /etc/fstab.bak
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ```
