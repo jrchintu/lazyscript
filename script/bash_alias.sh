@@ -2,11 +2,11 @@
 
 git config --global user.name "jrchintu"
 git config --global user.email "harrypetersun@outlook.com.com"
-git config --global push.default matching
+#git config --global push.default matching
 export TZ='Asia/Kolkata'
 
 #alias
-alias gdup='gdrive upload -p 0AB4ISlC3RuroUk9PVA '
+alias
 alias update='sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y'
 alias nb='nano ~/.bashrc'
 alias ..='cd ..'
@@ -20,11 +20,10 @@ alias gaa='git add --all'
 alias gb='git branch'
 alias gco='git checkout'
 alias gcb='git checkout -b'
-alias gcl='git clone --recurse-submodules'
 alias gf='git fetch'
 alias gpl='git pull'
 alias gm='git merge'
-alias gpsup='git push --set-upstream origin $(git_current_branch)'
+alias gpsup='git push -u origin $(git_current_branch)'
 alias gra='git remote add'
 alias grv='git remote -v'
 alias grrm='git remote remove'
@@ -48,6 +47,3 @@ alias rmrf='rm -rf'
 alias ip="curl ipinfo.io/ip; echo"
 alias speed='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias rs='repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j'
-alias fr='free -h'
-alias gssh='gcloud cloud-shell ssh'
-
