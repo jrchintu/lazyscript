@@ -13,6 +13,10 @@ curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ./bin/rep
 git clone https://github.com/akhilnarang/scripts.git scripts && cd scripts && \
 bash setup/android_build_env.sh && cd ..
 ```
+## EXTRA FLAGS
+```
+export WITHOUT_CHECK_API=true
+```
 ## Azure temp setup
 ```
 rom_name='awaken' && \
