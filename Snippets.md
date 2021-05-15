@@ -1,16 +1,19 @@
 # Snippets
 
-## *Env setup for AOSP* (Run Line By Line)
+## Env setup for AOSP (Run Part By Part Only fot x86_64)
 ```
 sudo su
-add-apt-repository ppa:openjdk-r/ppa -y && apt install git-core -y && apt install p7zip-full -y && apt update -y && apt upgrade -y && exit
-
+add-apt-repository ppa:openjdk-r/ppa -y
+apt install git-core p7zip-full -y 
+apt update -y && apt upgrade -y && exit
+```
+```
 mkdir ./bin && PATH=./bin:$PATH
 curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ./bin/repo && chmod a+x ./bin/repo
-git clone https://github.com/akhilnarang/scripts.git scripts && cd scripts
+git clone https://github.com/akhilnarang/scripts.git scripts && cd scripts && \
 bash setup/android_build_env.sh && cd ..
 ```
-## *Azure temp setup*
+## Azure temp setup
 ```
 rom_name='awaken' && \
 sudo mkdir -p /mnt/$rom_name && \
@@ -19,12 +22,12 @@ sudo chmod -R 777 /mnt/$rom_name/ && \
 cd /mnt/$rom_name/
 ```
 
-## *GDUPLOAD* (Gdrive Upload)
+## GDUPLOAD (Gdrive Upload)
 ```
 curl --compressed -Ls https://github.com/labbots/google-drive-upload/raw/master/install.sh | sh -s
 ```
 
-## *Auto tmate*
+## Auto tmate
 ```
 sudo apt update -y && \
 sudo apt install tmux tmate -y && \
@@ -34,12 +37,27 @@ tmate -S /tmp/tmate.sock wait tmate-ready && \
 SENDSHELL=$(tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}') && \
 echo $SENDSHELL
 ```
-## *Ccache*
+## Ccache
 ```
-ccache_dir=/mnt/aosip/ccache && max_ccache=40G && export CCACHE_DIR=$ccache_dir && ccache -M $max_ccache && export USE_CCACHE=1 && export CCACHE_EXEC=$(which ccache)
+{ 
+echo USE_CCACHE=1
+echo "export CCACHE_DIR=\"/mnt/aosip/ccache\""
+}>>~/.bashrc && source ~/.bashrc
+
+ccache -M 30G
+export USE_CCACHE=1
+export CCACHE_EXEC=$(command -v ccache)
+export CCACHE_DIR="/mnt/aosip/ccache"
+```
+##### Compression & Compilercheck
+```
+ccache -o compression=true
+
+# ccheck {none; content; mtime}
+export CCACHE_COMPILERCHECK="content"
 ```
 
-## *Shell-Bot*
+## Shell-Bot
 ```
 sudo apt update -y
 sudo apt-get install -y nodejs
