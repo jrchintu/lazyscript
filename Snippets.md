@@ -73,13 +73,8 @@ sudo swapon --show
 free -h
 df -h
 
-# Make swapfile
+# Make swapfile & Set correct permission
 sudo fallocate -l 1G /swapfile
-
-# Check size
-ls -lh /swapfile
-
-# Set crrct perm and check it
 sudo chmod 600 /swapfile
 ls -lh /swapfile
 
