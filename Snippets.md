@@ -19,9 +19,8 @@ export WITHOUT_CHECK_API=true
 ```
 ## Azure temp setup
 ```
-rom_name='awaken' && \
+rom_name='ROM' && \
 sudo mkdir -p /mnt/$rom_name && \
-sudo chmod -R 666 /mnt/$rom_name && \
 sudo chmod -R 777 /mnt/$rom_name/ && \
 cd /mnt/$rom_name/
 ```
