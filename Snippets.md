@@ -15,6 +15,7 @@ bash setup/android_build_env.sh && cd ..
 ```
 ## EXTRA FLAGS
 ```
+export SELINUX_IGNORE_NEVERALLOWS=true
 export WITHOUT_CHECK_API=true
 ```
 ## Azure temp setup
