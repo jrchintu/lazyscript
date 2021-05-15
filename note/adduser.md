@@ -1,0 +1,15 @@
+username=c	#don't use capital letter/space
+password=chintu
+```
+sudo useradd -m $username && echo -en "$password\n$password" | passwd $username && \
+sudo usermod -aG sudo $username
+```
+#### copied method
+pacman -S sudo
+useradd --create-home k
+passwd k
+usermod --append --groups wheel k
+EDITOR=/bin/vim visudo
+
+#### Uncomment to allow members of group wheel to execute any command
+%wheel ALL=(ALL) ALL
