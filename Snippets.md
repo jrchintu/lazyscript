@@ -95,3 +95,31 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 /bin/cp /etc/skel/.bashrc ~/
 source ~/.bashrc
 ```
+
+## SWAPPINESS
+For a Desktop, a swappiness setting of 60 is not a bad value. For a server, you might want to move it closer to 0.
+For instance, to set the swappiness to 10, we could type:
+```
+# Check swappiness
+cat /proc/sys/vm/swappiness
+
+# Change swappiness
+sudo sysctl vm.swappiness=10
+
+# Persiste across reboot
+sudo cp /etc/sysctl.conf /etc/sysctl.conf.bak
+sudo /bin/su -c "echo 'vm.swappiness=10' >> /etc/sysctl.conf"
+```
+## CACHE_PRESSURE
+Another related value that you might want to modify is the vfs_cache_pressure. This setting configures how much the system will choose to cache inode and dentry information over other data.Basically, this is access data about the filesystem. This is generally very costly to look up and very frequently requested, so it’s an excellent thing for your system to cache. You can see the current value by querying the proc filesystem again. As it is currently configured, our system removes inode information from the cache too quickly. We can set this to a more conservative setting like 50 :
+```
+#check CACHE_PRESSURE
+cat /proc/sys/vm/vfs_cache_pressure
+
+#change CACHE_PRESSURE
+sudo sysctl vm.vfs_cache_pressure=50
+
+#persist across reboot
+sudo cp /etc/sysctl.conf /etc/sysctl.conf.bak
+sudo /bin/su -c "echo 'vm.vfs_cache_pressure=50' >> /etc/sysctl.conf"
+```
