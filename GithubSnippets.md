@@ -59,3 +59,6 @@ git commit && git push
 
 // delete branch remotely
 `git push origin --delete remoteBranchName`
+
+## Git revert
+git revert --no-commit HEAD~3.. #3 is no.of old head commits
