@@ -43,6 +43,7 @@ echo $SENDSHELL
 ```
 ## Ccache
 ```
+cp ~/.bashrc ~/.bashrc.bak
 echo USE_CCACHE=1 >>~/.bashrc
 echo "export CCACHE_DIR=\"/home/$USER/.ccache\"" >>~/.bashrc
 source ~/.bashrc
