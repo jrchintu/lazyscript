@@ -49,9 +49,9 @@ cp ~/.bashrc ~/.bashrc.bak
 echo USE_CCACHE=1 >>~/.bashrc
 source ~/.bashrc
 
+export CCACHE_DIR="$HOME/.ccache"
 export USE_CCACHE=1
 export CCACHE_EXEC=$(which ccache)
-export CCACHE_DIR="$HOME/.ccache"
 ccache -M 30G
 ccache -o compression=true
 ccache -z
