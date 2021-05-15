@@ -40,13 +40,13 @@ echo $SENDSHELL
 ## Ccache
 ```
 echo USE_CCACHE=1 >>~/.bashrc
-echo "export CCACHE_DIR=\"~/.ccache\"" >>~/.bashrc
+echo "export CCACHE_DIR=\"/home/$USER/.ccache\"" >>~/.bashrc
 source ~/.bashrc
 
 ccache -M 30G
 export USE_CCACHE=1
 export CCACHE_EXEC=$(command -v ccache)
-export CCACHE_DIR="~/.ccache"
+export CCACHE_DIR="/home/$USER/.ccache"
 ```
 ##### Compression & Compilercheck
 ```
@@ -93,4 +93,10 @@ sudo swapon --show
 # Take fstab backup && make swap permanent
 sudo cp /etc/fstab /etc/fstab.bak
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+```
+
+## FIX BASHRC
+```
+/bin/cp /etc/skel/.bashrc ~/
+source ~/.bashrc
 ```
