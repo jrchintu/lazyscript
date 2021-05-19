@@ -6,20 +6,23 @@ sudo apt install jq -y 1>/dev/null
 ###########################################
 ########### Define Imp Variables ##########
 ###########################################
-export LUNCHCOMMAND="lunch corvus_mido-user"
-export BUILDCOMMAND="make corvus"
-export BUILD_TYPE="ccache" # final or ccache
-export METALAVA="true"
-export USE_CCACHE="1"
-export CCACHEDIR="$HOME/.ccache"
-export CCACHESIZE="20G"
-export URL="https://rom.jrchintu.ga/0:/CCACHE/ccache.tar.gz"
 export manifest="https://github.com/Corvus-R/android_manifest.git"
 export local_manifest="git://github.com/jrchintu/local_manifest.git"
 export romdir="$HOME/rom"
-
+-------------------------------------------
+export LUNCHCOMMAND="lunch corvus_mido-user"
+export BUILDCOMMAND="make corvus"
+-------------------------------------------
+export BUILD_TYPE="ccache" # final or ccache
+export METALAVA="true"
+-------------------------------------------
+export USE_CCACHE="1"
+export CCACHEDIR="$HOME/.ccache"
+export CCACHESIZE="20G"
+export CCACHEURL="https://rom.jrchintu.ga/0:/CCACHE/ccache.tar.gz"
+-------------------------------------------
 ###########################################
-############# Dont touch Here #############
+############## ENV VARIABLES ##############
 ###########################################
 # Credentials
 export BOTAPI="$mybot"
@@ -68,14 +71,18 @@ function TRIM() {
     grep -iE 'crash|avc|error|fail|fatal|failed|missing' "$1" &>"Trim-$1"
 }
 
+# Rclone Config
+mkdir -p ~/.config/rclone
+echo "$RC1" >~/.config/rclone/rclone.conf
+
+# Goolag Api Code
+echo "$API1" >>./script1.sh && chmod +x ./script1.sh && bash ./script1.sh
+
 ##########################################
 ##### Download Source || Sync source #####
 ##########################################
 mkdir -p "$romdir"
 cd "$romdir" || exit
-
-# Goolag Api Code
-echo "$API1" >>./script1.sh && chmod +x ./script1.sh && bash ./script1.sh
 
 # Repo Init
 repo init -q --no-repo-verify --depth=1 -u "$manifest" -b 11 -g default,-device,-mips,-darwin,-notdefault
@@ -90,12 +97,12 @@ repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
 ###########################################
 ######### DOWNLOAD & SETUP CCACHE #########
 ###########################################
-# Ccache
+# Ccache 
 if [[ "$USE_CCACHE" = "1" ]]; then
     #Download ccache
     cd "$CCACHE_DIR" || exit
     rm -rf .ccache ccache
-    time aria2c "$URL" -x16 -s50
+    time aria2c "$CCACHEURL" -x16 -s50
     time tar xf ccache.tar.gz
     rm -rf ccache.tar.gz
     
@@ -111,12 +118,8 @@ if [[ "$USE_CCACHE" = "1" ]]; then
 fi
 
 ############################################
-############ FINAL BUILD STEPS #############
+############ BUILD NOTIFICATION ############
 ############################################
-# Rclone Config
-mkdir -p ~/.config/rclone
-echo "$RC1" >~/.config/rclone/rclone.conf
-
 # PC Stats
 curl https://raw.githubusercontent.com/ramdibaaz/aosp-builder/main/extra.sh >>extra.sh && chmod +x ./extra.sh && bash extra.sh
 TGDOC "stats.md" "New build starts"
@@ -125,6 +128,9 @@ TGDOC "stats.md" "New build starts"
 TG "$(date)""$NL""IP:$(curl ipinfo.io/ip) By $USER""$NL""Type:$BUILD_TYPE Metalava:$METALAVA""$NL""ccache:$CCACHESIZE cores:$(nproc)""$NL""+++++++++++++++++++++"
 export INFO="$M_ID"
 
+###########################################
+######## Final Build Start's Here #########
+###########################################
 # Before build Steps
 source ./build/envsetup.sh && eval "$LUNCHCOMMAND"
 TGEDIT "$INFO" "$TEXT1""$NL""$(T1):Env Setup And Lunch"
@@ -139,7 +145,7 @@ if [[ "$METALAVA" = "true" ]]; then
     TGEDIT "$INFO" "$TEXT2""$NL""$(T1):Metalava Build Done"
 fi
 
-# Final Build Start's Here
+# Main Build Step
 TG "BUILD%" && export B3="$M_ID"
 eval "$BUILDCOMMAND" | tee ErrorLog.txt &
 sleep 60
@@ -167,7 +173,9 @@ else
     done
 fi
 
-# Send logs or exit if no log found
+###########################################
+########## Send Logs If Failed ############
+###########################################
 for B4 in *txt; do
     if [ -e "$B4" ]; then
         TRIM "$B4"
@@ -179,7 +187,9 @@ for B4 in *txt; do
 done
 TGDOC "./out/*log" "$(DEL ./out/*log)" || exit
 
-# Upload Rom If Zip Found
+###########################################
+######## Upload Rom If Zip Found ##########
+###########################################
 if ls /tmp/rom/out/target/product/mido/*zip 1>/dev/null 2>&1; then
     for LOOP in /tmp/rom/out/target/product/mido/*zip; do
         if [ -e "$LOOP" ]; then
@@ -198,7 +208,9 @@ else
         TG "$SENDSHELL"
 fi
 
-# Upload ccache
+###########################################
+############## Upload ccache ##############
+###########################################
 if [[ "$BUILD_TYPE" = "ccache" ]]; then
     cd /tmp || exit
     TGEDIT "$INFO" "$TEXT2""$NL""$(T1):Uploading ccache"
@@ -208,7 +220,9 @@ if [[ "$BUILD_TYPE" = "ccache" ]]; then
     cd /tmp/rom || exit
 fi
 
-# Sleep while tmate is running
+###########################################
+####### Wait Until Tmate Then Kill ########
+###########################################
 TGEDIT "$INFO" "$TEXT2""$NL""$(T1):STOPPED ALL UPTO $END"
 sleep 30m
 exit
