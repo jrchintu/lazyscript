@@ -1,3 +1,8 @@
+########## FULL SCRIPT TO FLASH MIUI FOR (STOCK) MEMEUI ############
+# NO NEED MEME FLASH TOOL
+# EXTRACT MEME STOCK ROM 
+# Keep images folder(inside stock-rom) and this script in same folder
+####################################################################
 fastboot $* getvar product 2>&1 | grep -E "^product: *MSM8953$|^product: *mido$"
 if [ $? -ne 0 ]; then
     echo "Missmatching image and device"
