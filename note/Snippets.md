@@ -3,17 +3,19 @@ otes
 
 ## Env setup for AOSP (Run Part By Part Only fot x86_64)
 ```
-sudo su
-apt update -y && apt upgrade -y
-add-apt-repository ppa:openjdk-r/ppa -y
-apt install git-core p7zip-full -y
-exit
-```
-```
-mkdir ./.bin && PATH=./.bin:$PATH
-curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ./.bin/repo && chmod a+x ./.bin/repo
-git clone https://github.com/akhilnarang/scripts.git scripts && cd scripts && \
-bash setup/android_build_env.sh && cd .. && rm -rf scripts
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt autoremove -y
+sudo add-apt-repository ppa:openjdk-r/ppa -y
+sudo apt install git-core p7zip-full -y
+
+curl https://storage.googleapis.com/git-repo-downloads/repo >./repo
+sudo mv repo /usr/bin/repo
+sudo chmod a+x /usr/bin/repo
+PATH="/usr/bin/repo:$PATH"
+
+git clone https://github.com/akhilnarang/scripts.git scripts
+cd scripts && sudo bash setup/android_build_env.sh && cd .. && rm -rf scripts
 ```
 ## EXTRA FLAGS
 ```
