@@ -20,7 +20,12 @@ cd scripts && sudo bash setup/android_build_env.sh && cd .. && rm -rf scripts
 ## EXTRA FLAGS
 ```
 export SELINUX_IGNORE_NEVERALLOWS=true
-export WITHOUT_CHECK_API=true
+```
+```
+export LC_ALL=C
+export SKIP_ABI_CHECKS=true
+export SKIP_API_CHECKS=true
+export WITHOUT_API_CHECK=1
 ```
 ## Azure temp setup
 ```
@@ -47,10 +52,6 @@ echo $SENDSHELL
 ```
 ## Ccache
 ```
-cp ~/.bashrc ~/.bashrc.bak
-echo USE_CCACHE=1 >>~/.bashrc
-source ~/.bashrc
-
 export CCACHE_DIR="$HOME/.ccache"
 export USE_CCACHE=1
 export CCACHE_EXEC=$(which ccache)
@@ -58,6 +59,14 @@ ccache -M 30G
 ccache -o compression=true
 ccache -z
 ccache -s
+```
+### OR
+```
+export USE_CCACHE=1
+export CCACHE_COMPRESS=1
+export CCACHE_COMPILERCHECK=content
+export CCACHE_EXEC="$(which ccache)"
+export CCACHE_DIR="$HOME/.ccache"
 ```
 ##### Compression & Compilercheck
 ```
