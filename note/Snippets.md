@@ -12,7 +12,7 @@ sudo apt install git-core p7zip-full -y
 curl https://storage.googleapis.com/git-repo-downloads/repo >./repo
 sudo mv repo /usr/bin/repo
 sudo chmod a+x /usr/bin/repo
-PATH="/usr/bin/repo:$PATH"
+PATH=/usr/bin/repo:$PATH
 
 git clone https://github.com/akhilnarang/scripts.git scripts
 cd scripts && sudo bash setup/android_build_env.sh && cd .. && rm -rf scripts
