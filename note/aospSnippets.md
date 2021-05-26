@@ -50,31 +50,6 @@ tmate -S /tmp/tmate.sock wait tmate-ready && \
 SENDSHELL=$(tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}') && \
 echo $SENDSHELL
 ```
-## Ccache
-```
-export CCACHE_DIR="$HOME/.ccache"
-export USE_CCACHE=1
-export CCACHE_EXEC=$(which ccache)
-ccache -M 30G
-ccache -o compression=true
-ccache -z
-ccache -s
-```
-### OR
-```
-export USE_CCACHE=1
-export CCACHE_COMPRESS=1
-export CCACHE_COMPILERCHECK=content
-export CCACHE_EXEC="$(which ccache)"
-export CCACHE_DIR="$HOME/.ccache"
-```
-##### Compression & Compilercheck
-```
-ccache -o compression=true
-
-# set compilercheck {none; content; mtime} (OPTIONAL)
-export CCACHE_COMPILERCHECK="content"
-```
 
 ## Shell-Bot
 ```
