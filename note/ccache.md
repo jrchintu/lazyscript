@@ -1,6 +1,6 @@
 
 # CCACHE
-
+##### WITH COMPRESSION 
 ```
 export USE_CCACHE=1
 export CCACHE_EXEC="$(which ccache)"
@@ -11,8 +11,7 @@ ccache -M 30G
 ccache -z
 ccache -s
 ```
-##### OR
-
+##### WITHOUT COMPRESSION
 ```
 export USE_CCACHE=1
 export CCACHE_EXEC="$(which ccache)"
@@ -22,7 +21,7 @@ ccache -M 30G
 ccache -z
 ccache -s
 ```
-##### READONLY
+##### READONLY CCACHE
 ```
 sudo mkdir /mnt/ccache
 sudo mount --bind $PWD/ccache /mnt/ccache
