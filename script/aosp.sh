@@ -190,10 +190,12 @@ TGDOC "./out/*log" "$(DEL ./out/*log)" || exit
 ###########################################
 ######## Upload Rom If Zip Found ##########
 ###########################################
-if ls /tmp/rom/out/target/product/mido/*zip 1>/dev/null 2>&1; then
-    for LOOP in /tmp/rom/out/target/product/mido/*zip; do
+if ls /tmp/rom/out/target/product/mido/*zip* 1>/dev/null 2>&1; then
+    for LOOP in /tmp/rom/out/target/product/mido/*zip*; do
+        mkdir -p out/target/product/mido/old
         if [ -e "$LOOP" ]; then
             rclone copy "$LOOP" GDUP:ROM/ZIP
+            mv "$LOOP" out/target/product/mido/old
             TGEDIT "$INFO" "$TEXT2""$NL""$(T1):Rom Uploaded"
             TG "ROM URL:-https://rom.jrchintu.ga/0:/ZIP/$LOOP"
         else
