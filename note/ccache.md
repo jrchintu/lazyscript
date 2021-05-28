@@ -5,8 +5,8 @@
 export USE_CCACHE=1
 export CCACHE_EXEC="$(which ccache)"
 export CCACHE_DIR="$HOME/.ccache"
-export CCACHE_COMPRESS=1
 export CCACHE_COMPILERCHECK=content
+export CCACHE_COMPRESS=1
 ccache -M 30G
 ccache -z
 ccache -s
