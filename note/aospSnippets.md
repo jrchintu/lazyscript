@@ -7,7 +7,7 @@ sudo apt update -y
 sudo apt upgrade -y
 sudo apt autoremove -y
 sudo add-apt-repository ppa:openjdk-r/ppa -y
-sudo apt install git-core p7zip-full -y
+sudo apt install git-core p7zip-full rclone pigz -y
 
 curl https://storage.googleapis.com/git-repo-downloads/repo >./repo
 sudo mv repo /usr/bin/repo
