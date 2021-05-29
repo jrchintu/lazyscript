@@ -3,19 +3,18 @@
 ##### WITH COMPRESSION 
 ```
 export USE_CCACHE=1
-export CCACHE_EXEC="$(which ccache)"
 export CCACHE_DIR="$HOME/.ccache"
-export CCACHE_COMPRESS=1
-export CCACHE_COMPRESSLEVEL=1
+export CCACHE_EXEC="$(which ccache)"
 ccache -M 30G
+ccache -o compression=true
 ccache -z
 ccache -s
 ```
 ##### WITHOUT COMPRESSION
 ```
 export USE_CCACHE=1
-export CCACHE_EXEC="$(which ccache)"
 export CCACHE_DIR="$HOME/.ccache"
+export CCACHE_EXEC="$(which ccache)"
 ccache -M 30G
 ccache -z
 ccache -s
@@ -23,12 +22,11 @@ ccache -s
 ##### READONLY CCACHE
 ```
 export USE_CCACHE=1
-export CCACHE_EXEC="$(which ccache)"
 export CCACHE_DIR="$HOME/.ccache"
-export CCACHE_COMPRESS=1
-export CCACHE_COMPRESSLEVEL=1
+export CCACHE_EXEC="$(which ccache)"
 export CCACHE_READONLY=true
 ccache -M 30G
+ccache -o compression=true
 ccache -z
 ccache -s
 ```
