@@ -25,7 +25,7 @@ export SELINUX_IGNORE_NEVERALLOWS=true
 export LC_ALL=C
 export SKIP_ABI_CHECKS=true
 export SKIP_API_CHECKS=true
-export WITHOUT_API_CHECK=1
+export WITHOUT_CHECK_API=true
 ```
 ## Azure temp setup
 ```
