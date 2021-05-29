@@ -1,4 +1,5 @@
 # CCACHE
+Notes:- Always use this commands in new fresh env and use same command everytime also use them before sourcing envsetup.sh file
 
 ##### WITH COMPRESSION 
 ```
