@@ -43,5 +43,9 @@ export CCACHE_EXEC="$(which ccache)"
 export CCACHE_COMPILERCHECK=content
 ccache -M 30G
 ccache -o compression=true
+export LC_ALL=C
+export SKIP_ABI_CHECKS=true
+export SKIP_API_CHECKS=true
+export WITHOUT_CHECK_API=true
 EOF
 ```
