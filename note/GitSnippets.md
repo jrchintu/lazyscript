@@ -62,3 +62,21 @@ git commit && git push
 
 ## Git revert
 git revert --no-commit HEAD~3.. #3 is no.of old head commits
+
+## Sparse Checkout (clone single folder)
+- 1. Copy an empty repo
+```
+git clone --no-checkout https://github.com/supabase/supabase
+```
+- 2. Move into the empty repo
+```
+cd supabase
+```
+- 3. Initialize sparse-checkout
+```
+git sparse-checkout init --cone
+```
+- 4. Checkout the folder
+```
+git sparse-checkout set examples/slack-clone-basic
+```
