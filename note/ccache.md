@@ -46,7 +46,7 @@ export LC_ALL=C
 export SKIP_ABI_CHECKS=true
 export SKIP_API_CHECKS=true
 export WITHOUT_CHECK_API=true
-if [[ $(pidof soong_ui) ]]; then true; else ccache-z; fi
+if [[ $(pidof soong_ui) ]]; then :; else ccache-z; fi
 EOF
 ```
 Next set 
