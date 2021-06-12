@@ -3,7 +3,7 @@ Powerfull scripts for me atleast
 
 # Download ARCH Installer
 ```
-curl -o install.sh https://x.gd/NHiez
+curl -Lo install.sh https://x.gd/NHiez
 ```
 
 # QUICK COMMANDS
