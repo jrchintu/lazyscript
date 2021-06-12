@@ -1,12 +1,14 @@
 # LAZYSCRIPT
 Powerfull scripts for me atleast
 
-# QUICK COMMANDS
-`bash <(curl -s <url of script> )`
-
-# ARCH Installer
+# Download ARCH Installer
 ```
-curl -LO https://x.gd/NHiez
+curl -o install.sh https://x.gd/NHiez
+```
+
+# QUICK COMMANDS
+```
+bash <(curl -s <url of script> )
 ```
 
 # CLONE IN FREE GCLOUD SHELL
