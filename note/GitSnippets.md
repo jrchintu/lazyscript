@@ -80,3 +80,16 @@ git sparse-checkout init --cone
 ```
 git sparse-checkout set examples/slack-clone-basic
 ```
+
+## Git Extended Log
+
+- --format='%ai %an <%ae> %h %f'
+- %ai: author date
+- %an: author name
+- %ae: author email
+- %h: commit hash (small)
+- %f: commit subject (sanitized)
+
+```
+git log --branches --tags --remotes --full-history --date-order --format='%ai %an <%ae> %h %f'
+```
