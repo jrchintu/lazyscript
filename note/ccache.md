@@ -47,7 +47,7 @@ export BUILD_BROKEN_DUP_RULES=true
 export SKIP_ABI_CHECKS=true
 export SKIP_API_CHECKS=true
 export WITHOUT_CHECK_API=true
-if [[ \$(pidof soong_ui) ]]; then :; else ccache-z; fi
+if [[ \$(pidof soong_ui) ]]; then :; else ccache -z; fi
 EOF
 ```
 Next set 
