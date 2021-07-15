@@ -1,11 +1,10 @@
-otes
 # Snippets
 
 ## Env setup for AOSP (Run Part By Part Only fot x86_64)
 ```
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt autoremove -y
+sudo apt autoremove --purge -y
 sudo add-apt-repository ppa:openjdk-r/ppa -y
 sudo apt install git-core p7zip-full rclone pigz -y
 
@@ -14,7 +13,7 @@ sudo mv repo /usr/bin/repo
 sudo chmod a+x /usr/bin/repo
 PATH=/usr/bin/repo:$PATH
 
-git clone https://github.com/akhilnarang/scripts.git scripts
+git clone --depth=1 https://github.com/akhilnarang/scripts.git scripts
 cd scripts && sudo bash setup/android_build_env.sh && cd .. && rm -rf scripts
 ```
 ## EXTRA FLAGS
