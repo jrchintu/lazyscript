@@ -16,6 +16,10 @@ PATH=/usr/bin/repo:$PATH
 git clone --depth=1 https://github.com/akhilnarang/scripts.git scripts
 cd scripts && sudo bash setup/android_build_env.sh && cd .. && rm -rf scripts
 ```
+## CLONE FAST
+```
+repo sync  --force-sync --current-branch --no-tags --no-clone-bundle --optimized-fetch --prune -j$(nproc --all)
+```
 ## EXTRA FLAGS
 ```
 export SELINUX_IGNORE_NEVERALLOWS=true
